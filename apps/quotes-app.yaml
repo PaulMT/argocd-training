@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quotes-student-8
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: student-8
+  project: default
+  source:
+    repoURL: https://github.com/PaulMT/argocd-training
+    targetRevision: HEAD
+    path: quotes-flask/helm/quotes-flask
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
