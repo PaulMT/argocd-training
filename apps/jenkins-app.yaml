@@ -1,16 +1,22 @@
-project: default
-destination:
-  server: 'https://kubernetes.default.svc'
-  namespace: student-8
-syncPolicy:
-  automated: {}
-sources:
-  - repoURL: 'https://charts.bitnami.com/bitnami'
-    targetRevision: 12.4.0
-    helm:
-      valueFiles:
-        - $values/jenkins/values.yaml
-    chart: jenkins
-  - repoURL: 'https://github.com/PaulMT/argocd-training'
-    targetRevision: main
-    ref: values
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quotes-student-<YOURNUMBER>
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: student-8
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: 'https://charts.bitnami.com/bitnami'
+      targetRevision: 12.4.0
+      helm:
+        valueFiles:
+          - $values/jenkins/values.yaml
+      chart: jenkins
+    - repoURL: 'https://github.com/PaulMT/argocd-training'
+      targetRevision: main
+      ref: values
