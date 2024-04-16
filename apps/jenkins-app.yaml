@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: quotes-student-8
+  name: student-8-jenkins
   namespace: argocd
 spec:
   project: default
